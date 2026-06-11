@@ -9,7 +9,7 @@ import { Router } from "express"
 const router = Router()
 router.get("/",middleMan,getHome)
 router.get("/studentNames",middleMan,getAllStudents)
-router.post("/studentNames/:indexNo",middleMan,addStudent)
+router.post("/studentNames",middleMan,addStudent)
 router.put("/studentNames/:indexNo",middleMan,updateStudent)
 
 router.delete("/studentNames/:indexNo",middleMan,deleteStudent)

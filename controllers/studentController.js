@@ -1,13 +1,14 @@
-import studentNames from "../models/studentModel.js"
+import Student from "../models/studentModel.js"
+import chalk from "chalk";
 
-export const getHome =  (req, res) => {
+export const getHome = (req, res) => {
   res.status(200).json({
     success: true,
     message: "ok",
   });
 }
 
-export  const getAllStudents = (req, res) => {
+export const getAllStudents = (req, res) => {
   res.status(200).json({
     success: true,
     message: "ok",
@@ -15,26 +16,31 @@ export  const getAllStudents = (req, res) => {
   });
 }
 
-export const addStudent = (req, res) => {
+export const addStudent = async (req, res) => {
+  console.log(req.body);
 
-  console.log(req.params.indexNo)
-  console.log(req.body.studentName3)
+  try {
+    const result = await Student.create(req.body)
+    res.status(201).json({
+      success: true,
+      message: "data added successfully",
+    
+    });
+  }
+  catch (error) {
+    console.log(chalk.red(error.message))
+  }
 
-  studentNames[req.params.indexNo]= req.body.studentName3
 
-  res.status(201).json({
-    success: true,
-    message: "data added successfully",
-    data: studentNames,
-  });
+
 }
 
-export  const updateStudent =(req, res) => {
+export const updateStudent = (req, res) => {
 
   console.log(req.params.indexNo)
   console.log(req.body.studentName3)
 
-  studentNames[req.params.indexNo]= req.body.studentName3
+  studentNames[req.params.indexNo] = req.body.studentName3
 
   res.status(200).json({
     success: true,
@@ -46,7 +52,7 @@ export  const updateStudent =(req, res) => {
 export const deleteStudent = (req, res) => {
 
   console.log(req.params.indexNo)
-  studentNames.splice(req.params.indexNo,1)
+  studentNames.splice(req.params.indexNo, 1)
   res.status(200).json({
     success: true,
     message: "data deleted successfully",
