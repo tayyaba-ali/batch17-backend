@@ -10,8 +10,8 @@ const router = Router()
 router.get("/",middleMan,getHome)
 router.get("/studentNames",middleMan,getAllStudents)
 router.post("/studentNames",middleMan,addStudent)
-router.put("/studentNames/:indexNo",middleMan,updateStudent)
+router.put("/studentNames",middleMan,updateStudent)
 
-router.delete("/studentNames/:indexNo",middleMan,deleteStudent)
+router.delete("/studentNames",middleMan,deleteStudent)
 
 export default router 

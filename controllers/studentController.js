@@ -8,7 +8,9 @@ export const getHome = (req, res) => {
   });
 }
 
-export const getAllStudents = (req, res) => {
+export const getAllStudents = async(req, res) => {
+
+ const studentNames =  await Student.collection.find()
   res.status(200).json({
     success: true,
     message: "ok",
@@ -35,17 +37,13 @@ export const addStudent = async (req, res) => {
 
 }
 
-export const updateStudent = (req, res) => {
-
-  console.log(req.params.indexNo)
-  console.log(req.body.studentName3)
-
-  studentNames[req.params.indexNo] = req.body.studentName3
+export const updateStudent = async(req, res) => {
+ const updated =await Student.updateOne({studentName:"Nayab"},{studentName:"Tayyaba"})
 
   res.status(200).json({
     success: true,
     message: "data updated successfully",
-    data: studentNames,
+    data: updated,
   });
 }
 
