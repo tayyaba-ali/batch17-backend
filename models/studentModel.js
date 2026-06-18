@@ -8,7 +8,8 @@ import { Model,Schema } from "mongoose";
 const studentSchema = new Schema({
     studentName: String,
     course: String,
-    age: Number
+    age: Number,
+    city: String
 
 })
 

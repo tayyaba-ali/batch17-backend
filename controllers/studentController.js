@@ -8,9 +8,9 @@ export const getHome = (req, res) => {
   });
 }
 
-export const getAllStudents = async(req, res) => {
+export const getAllStudents = async (req, res) => {
 
- const studentNames =  await Student.collection.find()
+  const studentNames = await Student.find()
   res.status(200).json({
     success: true,
     message: "ok",
@@ -26,7 +26,8 @@ export const addStudent = async (req, res) => {
     res.status(201).json({
       success: true,
       message: "data added successfully",
-    
+      data: result
+
     });
   }
   catch (error) {
@@ -37,8 +38,8 @@ export const addStudent = async (req, res) => {
 
 }
 
-export const updateStudent = async(req, res) => {
- const updated =await Student.updateOne({studentName:"Nayab"},{studentName:"Tayyaba"})
+export const updateStudent = async (req, res) => {
+  const updated = await Student.updateOne(req.body, { $set: { city: "karachi" } })
 
   res.status(200).json({
     success: true,
