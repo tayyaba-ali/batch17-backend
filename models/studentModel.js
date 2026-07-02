@@ -9,7 +9,9 @@ const studentSchema = new Schema({
     studentName: String,
     course: String,
     age: Number,
-    city: String
+    city: String,
+    email: String,
+    password : String
 
 })
 

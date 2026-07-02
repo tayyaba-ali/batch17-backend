@@ -1,5 +1,6 @@
 import Student from "../models/studentModel.js"
 import chalk from "chalk";
+import bcrypt from "bcrypt"
 
 export const getHome = (req, res) => {
   res.status(200).json({
@@ -22,7 +23,9 @@ export const addStudent = async (req, res) => {
   console.log(req.body);
 
   try {
-    const result = await Student.create(req.body)
+
+    const hasedPassword = await bcrypt.hash(req.body.password, 10)
+    const result = await Student.create({ ...req.body, password: hasedPassword })
     res.status(201).json({
       success: true,
       message: "data added successfully",
@@ -37,6 +40,9 @@ export const addStudent = async (req, res) => {
 
 
 }
+
+
+
 
 export const updateStudent = async (req, res) => {
   const updated = await Student.updateOne(req.body, { $set: { city: "karachi" } })
